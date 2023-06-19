@@ -23,6 +23,9 @@ export function buildApp(diContainers: NameAndRegistrationPair<Cradle>) {
     });
     diContainer.register(diContainers);
     app.after(() => {
+        app.options(
+            "/",
+            () => "ok!");
         app.route({
             method: "POST",
             url: "/transaction",

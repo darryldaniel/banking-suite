@@ -5,6 +5,7 @@ import { CommandExecutor } from "./cqrs/command-executor";
 import { InvestecTransactionRepository } from "./db/investec-transaction-repository";
 import { InvestecMerchantRepository } from "./db/investec-merchant-repository";
 import { YnabProvider } from "./budget/ynab-provider";
+import { CreateConnection } from "./db/mongoConnectionFactory";
 
 async function run() {
     if (process.env.NODE_ENV !== "production") {
@@ -20,6 +21,7 @@ async function run() {
     }
 
     const app = buildApp(diContainers);
+    await CreateConnection();
     app.listen(
         {
             port: 3000

@@ -9,6 +9,11 @@ export function GetMongoDBConnection(collectionName: string) {
     return mongoClient.db(process.env.DB_NAME).collection(collectionName);
 }
 
+export async function CreateConnection() {
+    mongoClient = new MongoClient(process.env.MONGODB_URI || "");
+    await mongoClient.connect();
+}
+
 export async function destroy() {
     if (mongoClient) {
         await mongoClient.close();

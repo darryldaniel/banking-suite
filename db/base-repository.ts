@@ -1,5 +1,5 @@
-import {Collection, MongoClient, ObjectId} from "mongodb";
-import {Entity} from "../models/entity";
+import { Collection, ObjectId } from "mongodb";
+import { Entity } from "../models/entity";
 import { destroy, GetMongoDBConnection } from "./mongoConnectionFactory";
 import { IWriter } from "./writer";
 import { IReader } from "./reader";
@@ -21,12 +21,12 @@ export class BaseRepository<T extends Entity> implements IReader<T>, IWriter<T> 
     }
 
     public async findById(id: ObjectId): Promise<T | null> {
-        const result = await this.collection.findOne({_id: id});
+        const result = await this.collection.findOne({ _id: id });
         return result as T | null;
     }
 
     public async deleteById(id: ObjectId): Promise<boolean> {
-        const result = await this.collection.deleteOne({_id: id});
+        const result = await this.collection.deleteOne({ _id: id });
         return result.deletedCount === 1;
     }
 

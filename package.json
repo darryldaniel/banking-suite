@@ -5,7 +5,7 @@
     "main": "server.js",
     "scripts": {
         "test": "jest",
-        "test:watch": "ava --watch",
+        "test:watch": "jest --watch",
         "start": "tsx server.ts"
     },
     "type": "module",

@@ -1,5 +1,3 @@
-import { InvestecTransactionRepository } from "../db/investec-transaction-repository";
-
 jest.doMock("../cqrs/command-executor", () => {
 
 });

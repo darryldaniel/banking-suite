@@ -1,11 +1,8 @@
-import test from "ava";
 import { ObjectId } from "mongodb";
 import {
-    getRandomInvestecCardTransactionPayload,
     getRandomInvestecTransaction
 } from "../test-helpers/factories/transaction-test-factory";
 import { InvestecTransactionRepository } from "../db/investec-transaction-repository";
-import { Merchant } from "../models/merchant";
 import { InvestecMerchantRepository } from "../db/investec-merchant-repository";
 import { describe, it, expect } from "@jest/globals";
 

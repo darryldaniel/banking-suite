@@ -79,14 +79,12 @@ export function buildApp(diContainers: NameAndRegistrationPair<Cradle>) {
                     }
                 }
             },
-            handler: async (
-                request,
-                reply) => {
+            handler: async (request) => {
                 const commandExecutor = request.diScope.resolve<CommandExecutor>(Containers.CommandExecutor);
                 try {
-                    const result = await commandExecutor.execute(new CreateBudgetItemFromTransactionCommand(request.body as InvestecCardTransactionPayload));
+                    await commandExecutor.execute(new CreateBudgetItemFromTransactionCommand(request.body as InvestecCardTransactionPayload));
                 } catch (e) {
-                    console.log(e);
+                    console.error(e);
                 }
                 return "ok!";
             }

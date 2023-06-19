@@ -50,7 +50,9 @@ describe("POST /transaction", () => {
                 headers: {
                     ...getAuthHeader()
                 },
-                body: request
+                body: {
+                    transactionString: request
+                }
             });
 
             // assert
@@ -70,7 +72,9 @@ describe("POST /transaction", () => {
             headers: {
                 ...getAuthHeader()
             },
-            body: request
+            body: {
+                transactionString: JSON.stringify(request)
+            }
         });
 
         // assert

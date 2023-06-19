@@ -8,22 +8,18 @@ import { CommandExecutor } from "./cqrs/command-executor";
 import { Containers } from "./di/containers";
 
 export function buildApp(diContainers: NameAndRegistrationPair<Cradle>) {
-    const envToLogger = {
-        development: {
-            transport: {
-                target: "pino-pretty",
-                options: {
-                    translateTime: 'HH:MM:ss Z',
-                    ignore: 'pid,hostname',
-                },
-            },
-        },
-        production: true,
-        test: false,
-    }
     const app = Fastify({
-        // @ts-ignore
-        logger: envToLogger[process.env.NODE_ENV || "development"],
+        logger: process.env.test
+            ? false
+            : {
+                transport: {
+                    target: "pino-pretty",
+                    options: {
+                        translateTime: 'HH:MM:ss Z',
+                        ignore: 'pid,hostname',
+                    },
+                },
+            }
     });
     app.register(fastifyAwilixPlugin, { disposeOnClose: true, disposeOnResponse: true })
     app.register(FastifyBasicAuth, {

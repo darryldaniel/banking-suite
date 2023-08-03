@@ -9,7 +9,7 @@ import { Containers } from "./di/containers";
 
 export function buildApp(diContainers: NameAndRegistrationPair<Cradle>) {
     const app = Fastify({
-        logger: process.env.test
+        logger: process.env.NODE_ENV === "test"
             ? false
             : {
                 transport: {

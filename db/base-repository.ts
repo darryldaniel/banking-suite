@@ -20,6 +20,11 @@ export class BaseRepository<T extends Entity> implements IReader<T>, IWriter<T> 
         return result.insertedId;
     }
 
+    public async createMany(entities: T[]): Promise<ObjectId[]> {
+        const result = await this.collection.insertMany(entities);
+        return result.insertedIds as ObjectId[];
+    }
+
     public async findById(id: ObjectId): Promise<T | null> {
         const result = await this.collection.findOne({ _id: id });
         return result as T | null;

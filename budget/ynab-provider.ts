@@ -1,4 +1,4 @@
-import { API } from "ynab";
+import { API, Payee } from "ynab";
 import { IBudgetProvider } from "./budget-provider";
 import { BudgetTransaction } from "../models/budget-transaction";
 
@@ -29,7 +29,12 @@ export class YnabProvider implements IBudgetProvider {
                     }
                 });
         } catch (e) {
-             console.error(e);
+            console.error(e);
         }
+    }
+
+    public async getAllPayees(): Promise<Payee[]> {
+        const response = await this.client.payees.getPayees(this.budgetId);
+        return response.data.payees;
     }
 }
